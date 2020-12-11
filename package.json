@@ -1,0 +1,26 @@
+{
+  "name": "orm-sequelize",
+  "version": "1.0.0",
+  "description": "Aprendendo a utilizar o Sequelize com Express.",
+  "main": "index.js",
+  "scripts": {
+    
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fryttzz/orm-sequelize.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fryttzz/orm-sequelize/issues"
+  },
+  "homepage": "https://github.com/Fryttzz/orm-sequelize#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  }
+}
