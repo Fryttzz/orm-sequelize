@@ -60,7 +60,7 @@ class PessoaController {
                 }
             })
 
-            return res.status(204).send()
+            return res.status(200).json({message: `Pessoa com id: ${id} deletada`})
         } catch (error) {
             return res.status(500).json(error.message)
         }
