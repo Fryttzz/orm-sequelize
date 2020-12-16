@@ -12,44 +12,59 @@ class NivelController {
     }
 
     static async pegaUmNivel(req, res) {
-		const { id } = req.params
-		try {
-			const umNivel = await nivelService.pegaUmRegistro(id)
-			return res.status(200).json(umNivel)
-		} catch (error) {
-			return res.status(500).json(error.message)
-		}
-	}
+        const {id} = req.params
+        try {
+            const umaNivel = await database.Niveis.findOne({
+                where: {
+                    id: Number(id)
+                }
+            })
+            return res.status(200).json(umaNivel)
+        } catch (error) {
+            return res.status(500).json(error.message) 
+        }
+    }
 
-	static async criaNivel(req, res) {
-		const novoNivel = req.body
-		try {
-			const novoNivelCriado = await nivelService.criaRegistro(novoNivel)
-			return res.status(200).json(novoNivelCriado)
-		} catch (error) {
-			return res.status(500).json(error.message)
-		}
-	}
-	
-	static async atualizaNivel(req, res) {
-		const { id } = req.params
-		const novasInfos = req.body
-		try {
-			const nivelAtualizado = await nivelService.atualizaRegistro(id, novasInfos)
-			return res.status(200).json(nivelAtualizado)
-		} catch (error) {
-			return res.status(500).json(error.message)
-		}
-	}
+    static async criaNivel(req, res) {
+        const novoNivel = req.body
 
-	static async apagaNivel(req, res) {
-		const { id } = req.params
-		try {
-			await nivelService.apagaRegistro(id)
-			return res.status(200).json({mensagem: `id ${id} deletado`})
-		} catch (error) {
-			return res.status(500).json(error.message)
-		}
+        try {
+            const novoNivelCriada = await database.Niveis.create(novoNivel)
+            return res.status(201).json(novoNivelCriada)
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async atualizaNivel(req, res) {
+        const {id} = req.params
+        const novasInfos = req.body
+
+        try {
+            await database.Niveis.update(novasInfos, {where: {id: Number(id)}})
+
+            const nivelAtualizado = await database.Niveis.findOne(
+                {where: {id: Number(id)}})
+            return res.status(200).json(nivelAtualizado)
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
+    }
+
+    static async apagaNivel(req, res) {
+        const {id} = req.params
+
+        try {
+            await database.Niveis.destroy({
+                where: {
+                    id: Number(id)
+                }
+            })
+
+            return res.status(200).json({message: `Nivel com id: ${id} deletado`})
+        } catch (error) {
+            return res.status(500).json(error.message)
+        }
     }
     
 }
