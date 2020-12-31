@@ -1,5 +1,5 @@
 const bodyParser = require('body-parser')
-const pessoas = require('./pessoasPessoas')
+const pessoas = require('./pessoasRoute')
 const niveis = require('./niveisRoute')
 const turmas = require('./turmasRoute')
 
